@@ -1,0 +1,7 @@
+variable "nsg" {
+
+}
+
+variable "security" {
+
+}
