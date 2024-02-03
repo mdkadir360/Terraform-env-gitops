@@ -40,30 +40,5 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "20_04-lts"
     version   = "latest"
   }
-connection {
-  host = self.public_ip_address
-  user = self.admin_username
-  password = self.admin_password
-  type = "ssh"
-  timeout = "4m"
-}
-provisioner "file" {
-  source = "index.html"
-  destination = "/tmp/index.html"
-  
-}
-
-provisioner "remote-exec" {
-   inline = [ 
-    "sudo apt update",
-    "sudo apt install nginx -y",
-    "sudo cp /tmp/index.html /var/www/html"
-   ]
-}
-
-provisioner "local-exec" {
-  command = "echo Everything is fine > Everything is OK.txt"
-  
-}
 
 }
