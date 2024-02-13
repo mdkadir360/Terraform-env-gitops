@@ -4,11 +4,11 @@ data "azurerm_subnet" "subnetdata" {
   virtual_network_name =each.value.virtual_network_name
   resource_group_name  = each.value.resource_group_name
 }
-data "azurerm_public_ip" "ipdata" {
-  for_each            = var.nic
-  name                = each.value.ipname
-  resource_group_name = each.value.resource_group_name
-}
+#data "azurerm_public_ip" "ipdata" {
+#  for_each            = var.nic
+#  name                = each.value.ipname
+ # resource_group_name = each.value.resource_group_name
+#}
 
 resource "azurerm_network_interface" "nicblock" {
   for_each            = var.nic
@@ -20,6 +20,6 @@ resource "azurerm_network_interface" "nicblock" {
     name                          = "internal"
     subnet_id                     = data.azurerm_subnet.subnetdata[each.key].id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = data.azurerm_public_ip.ipdata[each.key].id
+   #public_ip_address_id          = data.azurerm_public_ip.ipdata[each.key].id
   }
 }
