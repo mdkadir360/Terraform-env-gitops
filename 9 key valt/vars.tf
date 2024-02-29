@@ -1,6 +1,0 @@
-variable "keyvault" {
-
-}
-variable "secret" {
-
-}
